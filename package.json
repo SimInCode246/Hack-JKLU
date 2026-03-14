@@ -16,5 +16,8 @@
   "devDependencies": {
     "concurrently": "^8.2.0",
     "kill-port": "^1.6.0"
+  },
+  "dependencies": {
+    "puppeteer": "^24.39.1"
   }
 }

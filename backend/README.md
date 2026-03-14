@@ -1,13 +1,29 @@
 # Security Scanner Backend
 
-A Node.js Express API server for the Security Scanner Dashboard.
+A Node.js Express API server for the Security Scanner Dashboard with support for multiple programming languages and package ecosystems.
 
 ## Features
 
-- Code vulnerability scanning
-- Dependency analysis
+- **Code vulnerability scanning** with expanded patterns for:
+  - SSRF (Server-Side Request Forgery)
+  - Insecure deserialization
+  - Hardcoded secrets
+  - SQL injection
+  - Path traversal
+  - Weak cryptography
+  - Insecure random number generation
+  - Missing security headers
+  - And more...
+
+- **Multi-ecosystem dependency analysis**:
+  - npm (Node.js)
+  - pip (Python) - requires `pip-audit`
+  - bundler (Ruby) - requires `bundler-audit`
+  - Support for requirements.txt, Pipfile, pyproject.toml, Gemfile, etc.
+
 - Dashboard statistics
-- File upload support
+- File upload support for various formats
+- Repository scanning with ZIP upload
 
 ## Installation
 
@@ -19,6 +35,15 @@ A Node.js Express API server for the Security Scanner Dashboard.
 2. Install dependencies:
    ```bash
    npm install
+   ```
+
+3. (Optional) Install additional tools for enhanced scanning:
+   ```bash
+   # For Python dependency scanning
+   pip install pip-audit
+   
+   # For Ruby dependency scanning
+   gem install bundler-audit
    ```
 
 ## Running the Server
@@ -38,10 +63,29 @@ The server will run on `http://localhost:5000` by default.
 ## API Endpoints
 
 - `GET /api/health` - Health check
-- `POST /api/scan/code` - Scan code for vulnerabilities (uses ESLint + eslint-plugin-security)
-- `POST /api/scan/dependencies` - Scan dependencies (accepts package.json text, JSON file, or ZIP archive containing package.json)
+- `POST /api/scan/code` - Scan code for vulnerabilities (uses ESLint + custom security patterns)
+- `POST /api/scan/dependencies` - Scan dependencies for multiple ecosystems
+  - Supports: package.json, requirements.txt, Pipfile, pyproject.toml, Gemfile, composer.json
+  - Accepts text content, file upload, or ZIP archive
 - `POST /api/scan/repo` - Scan entire repository (ZIP) for code and dependency vulnerabilities
+- `POST /api/scan/github` - Scan a public GitHub repo by URL (downloads ZIP and scans)
 - `GET /api/dashboard/stats` - Get dashboard statistics
+
+## Supported File Types
+
+### Code Scanning
+- JavaScript (.js)
+- TypeScript (.ts)
+- JSX (.jsx)
+- TSX (.tsx)
+
+### Dependency Scanning
+- **npm**: package.json
+- **Python**: requirements.txt, Pipfile, pyproject.toml, poetry.lock
+- **Ruby**: Gemfile, Gemfile.lock
+- **PHP**: composer.json
+- **Java**: pom.xml (planned)
+- **.NET**: packages.config, .csproj (planned)
 
 ## Technologies Used
 

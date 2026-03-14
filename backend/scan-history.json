@@ -1,5 +1,3872 @@
 [
   {
+    "id": "1773515319329",
+    "type": "code",
+    "timestamp": "2026-03-14T19:08:38.977Z",
+    "input": {
+      "snippet": "const { evaluate } = require('mathjs');\n\napp.post(\"/calculate\", (req, res) => {\n    const expression = req.body.expression;\n\n    try {\n        const result = evaluate(expression);\n        res.send({ result });\n    } catch {\n        res.send(\"Invalid expression\");\n    }\n});\n"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "no-undef",
+          "title": "no-undef",
+          "description": "'app' is not defined.",
+          "line": 3,
+          "column": 1,
+          "docsUrl": "https://eslint.org/docs/rules/no-undef"
+        },
+        {
+          "severity": "Low",
+          "ruleId": "missing-helmet",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "column": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "Low",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T19:08:38.977Z"
+    }
+  },
+  {
+    "id": "1773512882972",
+    "type": "code",
+    "timestamp": "2026-03-14T18:28:02.968Z",
+    "input": {
+      "snippet": "const express = require(\"express\");\nconst app = express();\n\napp.get(\"/search\", (req, res) => {\n    const query = req.query.q;\n    res.send(\"<h1>Results for: \" + query + \"</h1>\");\n});\n\napp.listen(3000);"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "Low",
+          "ruleId": "missing-helmet",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "column": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "Low",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "riskScore": 0,
+      "scanTime": "2026-03-14T18:28:02.968Z"
+    }
+  },
+  {
+    "id": "1773512301823",
+    "type": "code",
+    "timestamp": "2026-03-14T18:18:21.819Z",
+    "input": {
+      "snippet": "const express = require(\"express\");\nconst app = express();\n\napp.get(\"/search\", (req, res) => {\n    const query = req.query.q;\n    res.send(\"<h1>Results for: \" + query + \"</h1>\");\n});\n\napp.listen(3000);"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "Low",
+          "ruleId": "missing-helmet",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "column": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "Low",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "riskScore": 0,
+      "scanTime": "2026-03-14T18:18:21.819Z"
+    }
+  },
+  {
+    "id": "1773512281328",
+    "type": "code",
+    "timestamp": "2026-03-14T18:18:01.323Z",
+    "input": {
+      "snippet": "const express = require(\"express\");\nconst app = express();\n\napp.get(\"/search\", (req, res) => {\n    const query = req.query.q;\n    res.send(\"<h1>Results for: \" + query + \"</h1>\");\n});\n\napp.listen(3000);"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "Low",
+          "ruleId": "missing-helmet",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "column": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "Low",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "riskScore": 0,
+      "scanTime": "2026-03-14T18:18:01.323Z"
+    }
+  },
+  {
+    "id": "1773512261169",
+    "type": "repo",
+    "timestamp": "2026-03-14T18:17:40.192Z",
+    "input": {
+      "repoName": "mdn-js-examples.zip"
+    },
+    "result": {
+      "codeScan": {
+        "vulnerabilities": [
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\main.js",
+            "severity": "High",
+            "ruleId": "no-unused-vars",
+            "title": "no-unused-vars",
+            "description": "'name' is defined but never used.",
+            "line": 2,
+            "column": 10,
+            "docsUrl": "https://eslint.org/docs/rules/no-unused-vars"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 5,
+            "column": 35,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\main.js",
+            "severity": "High",
+            "ruleId": "no-unused-vars",
+            "title": "no-unused-vars",
+            "description": "'square2' is assigned a value but never used.",
+            "line": 13,
+            "column": 5,
+            "docsUrl": "https://eslint.org/docs/rules/no-unused-vars"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 2,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 3,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 20,
+            "column": 14,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 23,
+            "column": 23,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 21,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 24,
+            "column": 14,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 14,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 8,
+            "column": 39,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 19,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 36,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 39,
+            "column": 27,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 24,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 27,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 35,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 21,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 26,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-extra-semi",
+            "title": "no-extra-semi",
+            "description": "Unnecessary semicolon.",
+            "line": 3,
+            "column": 2,
+            "fix": "}\n\nclass",
+            "docsUrl": "https://eslint.org/docs/rules/no-extra-semi"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 37,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 40,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 3,
+            "column": 17,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 4,
+            "column": 17,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 5,
+            "column": 19,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 8,
+            "column": 39,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 19,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 36,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 39,
+            "column": 27,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 24,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 27,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 35,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 21,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 26,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-extra-semi",
+            "title": "no-extra-semi",
+            "description": "Unnecessary semicolon.",
+            "line": 3,
+            "column": 2,
+            "fix": "}\n\nclass",
+            "docsUrl": "https://eslint.org/docs/rules/no-extra-semi"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 37,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 40,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 6,
+            "column": 39,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 19,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 36,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 39,
+            "column": 27,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 24,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 27,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 35,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 21,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 26,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-extra-semi",
+            "title": "no-extra-semi",
+            "description": "Unnecessary semicolon.",
+            "line": 3,
+            "column": 2,
+            "fix": "}\n\nclass",
+            "docsUrl": "https://eslint.org/docs/rules/no-extra-semi"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 37,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 40,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-objects\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 8,
+            "column": 42,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          }
+        ],
+        "aiFindings": [
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\main.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "Medium",
+            "title": "Insecure Random Number Generation",
+            "description": "Using Math.random() for security-sensitive operations is predictable and insecure.",
+            "line": 1,
+            "fix": "Use crypto.randomBytes() or a cryptographically secure random number generator.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\main.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\main.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-objects\\main.js",
+            "severity": "Low",
+            "title": "Missing Security Headers",
+            "description": "Security headers like Helmet are not being used to protect against common attacks.",
+            "line": 1,
+            "fix": "Install and use the Helmet middleware to set security headers.",
+            "confidence": "High"
+          }
+        ],
+        "filesScanned": 20,
+        "riskScore": 100
+      },
+      "dependencyScan": null,
+      "overallRiskScore": 100,
+      "scanTime": "2026-03-14T18:17:40.192Z"
+    }
+  },
+  {
+    "id": "1773511210300",
+    "type": "code",
+    "timestamp": "2026-03-14T18:00:10.188Z",
+    "input": {
+      "snippet": "<?php if (isset($_GET[\"ip\"])) { system(\"ping -c 3 \" . $_GET[\"ip\"]); } ?>"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected token <",
+          "line": 1,
+          "column": 1,
+          "fix": "This likely means the code is not valid JavaScript/TypeScript or uses syntax not supported by the scanner. Detected PHP code. Use a PHP security scanner like phpstan/phpcs-security or roave/security-advisories."
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T18:00:10.188Z"
+    }
+  },
+  {
+    "id": "1773510979384",
+    "type": "code",
+    "timestamp": "2026-03-14T17:56:19.271Z",
+    "input": {
+      "snippet": "<?php if (isset($_GET[\"ip\"])) { system(\"ping -c 3 \" . $_GET[\"ip\"]); } ?>"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected token <",
+          "line": 1,
+          "column": 1,
+          "fix": "This likely means the code is not valid JavaScript/TypeScript or uses syntax not supported by the scanner. Ensure you are scanning JS/TS code, or use a language-specific scanner for other languages (e.g., Python, PHP, C)."
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T17:56:19.271Z"
+    }
+  },
+  {
+    "id": "1773510502911",
+    "type": "code",
+    "timestamp": "2026-03-14T17:48:22.910Z",
+    "input": {
+      "snippet": "import pickle\nimport base64\n\ndata = input(\"Enter serialized object: \")\n\ndecoded = base64.b64decode(data)\nobj = pickle.loads(decoded)\n\nprint(obj)"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected token import",
+          "line": 2,
+          "column": 1
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T17:48:22.910Z"
+    }
+  },
+  {
+    "id": "1773510441179",
+    "type": "code",
+    "timestamp": "2026-03-14T17:47:21.176Z",
+    "input": {
+      "snippet": "const express = require(\"express\");\nconst app = express();\n\napp.get(\"/search\", (req, res) => {\n    const query = req.query.q;\n    res.send(\"<h1>Results for: \" + query + \"</h1>\");\n});\n\napp.listen(3000);"
+    },
+    "result": {
+      "vulnerabilities": [],
+      "aiFindings": [],
+      "riskScore": 0,
+      "scanTime": "2026-03-14T17:47:21.176Z"
+    }
+  },
+  {
+    "id": "1773510412853",
+    "type": "code",
+    "timestamp": "2026-03-14T17:46:52.852Z",
+    "input": {
+      "snippet": "import pickle\nimport base64\n\ndata = input(\"Enter serialized object: \")\n\ndecoded = base64.b64decode(data)\nobj = pickle.loads(decoded)\n\nprint(obj)"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected token import",
+          "line": 2,
+          "column": 1
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T17:46:52.852Z"
+    }
+  },
+  {
+    "id": "1773510378349",
+    "type": "code",
+    "timestamp": "2026-03-14T17:46:18.349Z",
+    "input": {
+      "snippet": "public class Login {\n\n    public static void main(String[] args) {\n\n        String username = \"admin\";\n        String password = \"password123\";\n\n        if(username.equals(\"admin\") && password.equals(\"password123\")){\n            System.out.println(\"Login success\");\n        }\n    }\n}"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: The keyword 'public' is reserved",
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T17:46:18.349Z"
+    }
+  },
+  {
+    "id": "1773510343437",
+    "type": "code",
+    "timestamp": "2026-03-14T17:45:43.436Z",
+    "input": {
+      "snippet": "#include <stdio.h>\n#include <string.h>\n\nint main() {\n    char buffer[10];\n\n    printf(\"Enter text: \");\n    gets(buffer);\n\n    printf(\"You entered: %s\\n\", buffer);\n    return 0;\n}"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected character '#'",
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T17:45:43.436Z"
+    }
+  },
+  {
+    "id": "1773510305853",
+    "type": "code",
+    "timestamp": "2026-03-14T17:45:05.852Z",
+    "input": {
+      "snippet": "<?php\nif(isset($_GET['ip'])) {\n    $ip = $_GET['ip'];\n    system(\"ping -c 3 \" . $ip);\n}\n?>"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected token <",
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T17:45:05.852Z"
+    }
+  },
+  {
+    "id": "1773510291537",
+    "type": "code",
+    "timestamp": "2026-03-14T17:44:51.533Z",
+    "input": {
+      "snippet": "const express = require(\"express\");\nconst app = express();\n\napp.get(\"/search\", (req, res) => {\n    const query = req.query.q;\n    res.send(\"<h1>Results for: \" + query + \"</h1>\");\n});\n\napp.listen(3000);"
+    },
+    "result": {
+      "vulnerabilities": [],
+      "aiFindings": [],
+      "riskScore": 0,
+      "scanTime": "2026-03-14T17:44:51.533Z"
+    }
+  },
+  {
+    "id": "1773510216399",
+    "type": "code",
+    "timestamp": "2026-03-14T17:43:36.397Z",
+    "input": {
+      "snippet": "from flask import Flask, request\nimport sqlite3\n\napp = Flask(__name__)\n\n@app.route('/login')\ndef login():\n    username = request.args.get(\"username\")\n    password = request.args.get(\"password\")\n\n    conn = sqlite3.connect(\"users.db\")\n    cursor = conn.cursor()\n\n    query = f\"SELECT * FROM users WHERE username='{username}' AND password='{password}'\"\n    cursor.execute(query)\n\n    result = cursor.fetchone()\n\n    if result:\n        return \"Login successful\"\n    else:\n        return \"Login failed\"\n\n"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected token flask",
+          "line": 1,
+          "column": 6
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T17:43:36.397Z"
+    }
+  },
+  {
+    "id": "1773510112283",
+    "type": "repo",
+    "timestamp": "2026-03-14T17:41:51.472Z",
+    "input": {
+      "repoName": "mdn-js-examples.zip"
+    },
+    "result": {
+      "codeScan": {
+        "vulnerabilities": [
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\main.js",
+            "severity": "High",
+            "ruleId": "no-unused-vars",
+            "title": "no-unused-vars",
+            "description": "'name' is defined but never used.",
+            "line": 2,
+            "column": 10,
+            "docsUrl": "https://eslint.org/docs/rules/no-unused-vars"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 5,
+            "column": 35,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\main.js",
+            "severity": "High",
+            "ruleId": "no-unused-vars",
+            "title": "no-unused-vars",
+            "description": "'square2' is assigned a value but never used.",
+            "line": 13,
+            "column": 5,
+            "docsUrl": "https://eslint.org/docs/rules/no-unused-vars"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 2,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 3,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 20,
+            "column": 14,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 23,
+            "column": 23,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 21,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 24,
+            "column": 14,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 14,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 8,
+            "column": 39,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 19,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 36,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 39,
+            "column": 27,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 24,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 27,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 35,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 21,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 26,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-extra-semi",
+            "title": "no-extra-semi",
+            "description": "Unnecessary semicolon.",
+            "line": 3,
+            "column": 2,
+            "fix": "}\n\nclass",
+            "docsUrl": "https://eslint.org/docs/rules/no-extra-semi"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 37,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 40,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 3,
+            "column": 17,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 4,
+            "column": 17,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 5,
+            "column": 19,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 8,
+            "column": 39,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 19,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 36,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 39,
+            "column": 27,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 24,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 27,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 35,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 21,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 26,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-extra-semi",
+            "title": "no-extra-semi",
+            "description": "Unnecessary semicolon.",
+            "line": 3,
+            "column": 2,
+            "fix": "}\n\nclass",
+            "docsUrl": "https://eslint.org/docs/rules/no-extra-semi"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 37,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 40,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 6,
+            "column": 39,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 19,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 36,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 39,
+            "column": 27,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 24,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 27,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 35,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 21,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 26,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-extra-semi",
+            "title": "no-extra-semi",
+            "description": "Unnecessary semicolon.",
+            "line": 3,
+            "column": 2,
+            "fix": "}\n\nclass",
+            "docsUrl": "https://eslint.org/docs/rules/no-extra-semi"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 37,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 40,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-objects\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 8,
+            "column": 42,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          }
+        ],
+        "aiFindings": [],
+        "filesScanned": 20,
+        "riskScore": 100
+      },
+      "dependencyScan": null,
+      "overallRiskScore": 100,
+      "scanTime": "2026-03-14T17:41:51.472Z"
+    }
+  },
+  {
+    "id": "1773509814153",
+    "type": "repo",
+    "timestamp": "2026-03-14T17:36:53.062Z",
+    "input": {
+      "repoName": "mdn-js-examples.zip"
+    },
+    "result": {
+      "codeScan": {
+        "vulnerabilities": [
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\main.js",
+            "severity": "High",
+            "ruleId": "no-unused-vars",
+            "title": "no-unused-vars",
+            "description": "'name' is defined but never used.",
+            "line": 2,
+            "column": 10,
+            "docsUrl": "https://eslint.org/docs/rules/no-unused-vars"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 5,
+            "column": 35,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\main.js",
+            "severity": "High",
+            "ruleId": "no-unused-vars",
+            "title": "no-unused-vars",
+            "description": "'square2' is assigned a value but never used.",
+            "line": 13,
+            "column": 5,
+            "docsUrl": "https://eslint.org/docs/rules/no-unused-vars"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 2,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 3,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 20,
+            "column": 14,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 23,
+            "column": 23,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 21,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 24,
+            "column": 14,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\basic-modules\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 14,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 8,
+            "column": 39,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 19,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 36,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 39,
+            "column": 27,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 24,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 27,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 35,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 21,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 26,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-extra-semi",
+            "title": "no-extra-semi",
+            "description": "Unnecessary semicolon.",
+            "line": 3,
+            "column": 2,
+            "fix": "}\n\nclass",
+            "docsUrl": "https://eslint.org/docs/rules/no-extra-semi"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 37,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\classes\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 40,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 3,
+            "column": 17,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 4,
+            "column": 17,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 5,
+            "column": 19,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 8,
+            "column": 39,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 19,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 36,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 39,
+            "column": 27,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 24,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 27,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 35,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 21,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 26,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-extra-semi",
+            "title": "no-extra-semi",
+            "description": "Unnecessary semicolon.",
+            "line": 3,
+            "column": 2,
+            "fix": "}\n\nclass",
+            "docsUrl": "https://eslint.org/docs/rules/no-extra-semi"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 37,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\dynamic-module-imports\\modules\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 40,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 6,
+            "column": 39,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 19,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 36,
+            "column": 18,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\canvas.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 39,
+            "column": 27,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 24,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 27,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\circle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 35,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 18,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 21,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 26,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\square.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-extra-semi",
+            "title": "no-extra-semi",
+            "description": "Unnecessary semicolon.",
+            "line": 3,
+            "column": 2,
+            "fix": "}\n\nclass",
+            "docsUrl": "https://eslint.org/docs/rules/no-extra-semi"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 29,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 32,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 37,
+            "column": 20,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-aggregation\\modules\\shapes\\triangle.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 40,
+            "column": 16,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          },
+          {
+            "file": "mdn-js-examples-0dc0081\\module-examples\\module-objects\\main.js",
+            "severity": "High",
+            "ruleId": "no-undef",
+            "title": "no-undef",
+            "description": "'document' is not defined.",
+            "line": 8,
+            "column": 42,
+            "docsUrl": "https://eslint.org/docs/rules/no-undef"
+          }
+        ],
+        "aiFindings": [],
+        "filesScanned": 20,
+        "riskScore": 100
+      },
+      "dependencyScan": null,
+      "overallRiskScore": 100,
+      "scanTime": "2026-03-14T17:36:53.062Z"
+    }
+  },
+  {
+    "id": "1773509715653",
+    "type": "repo",
+    "timestamp": "2026-03-14T17:35:15.160Z",
+    "input": {
+      "repoName": "Mudit-Bagra-Per_HackJKLU_Affordable-Housing-Finder.zip"
+    },
+    "result": {
+      "codeScan": {
+        "vulnerabilities": [
+          {
+            "file": "Mudit-Bagra-Per_HackJKLU_Affordable-Housing-Finder-a9a1404\\server.js",
+            "severity": "High",
+            "ruleId": "no-unused-vars",
+            "title": "no-unused-vars",
+            "description": "'result' is defined but never used.",
+            "line": 37,
+            "column": 62,
+            "docsUrl": "https://eslint.org/docs/rules/no-unused-vars"
+          }
+        ],
+        "aiFindings": [],
+        "filesScanned": 1,
+        "riskScore": 40
+      },
+      "dependencyScan": null,
+      "overallRiskScore": 40,
+      "scanTime": "2026-03-14T17:35:15.160Z"
+    }
+  },
+  {
+    "id": "1773509101244",
+    "type": "repo",
+    "timestamp": "2026-03-14T17:25:01.204Z",
+    "input": {
+      "repoName": "eval-vulnerable.zip"
+    },
+    "result": {
+      "codeScan": {
+        "vulnerabilities": [
+          {
+            "file": "eval-vulnerable.js",
+            "severity": "High",
+            "ruleId": "security/detect-eval-with-expression",
+            "title": "security/detect-eval-with-expression",
+            "description": "eval with argument of type Identifier",
+            "line": 11,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/security/detect-eval-with-expression"
+          },
+          {
+            "file": "eval-vulnerable.js",
+            "severity": "High",
+            "ruleId": "no-eval",
+            "title": "no-eval",
+            "description": "eval can be harmful.",
+            "line": 11,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-eval"
+          },
+          {
+            "file": "vulnerable-app.js",
+            "severity": "Medium",
+            "ruleId": "security/detect-child-process",
+            "title": "security/detect-child-process",
+            "description": "Found child_process.exec() with non Literal first argument",
+            "line": 34,
+            "column": 3,
+            "docsUrl": "https://eslint.org/docs/rules/security/detect-child-process"
+          }
+        ],
+        "aiFindings": [
+          {
+            "file": "eval-vulnerable.js",
+            "severity": "High",
+            "title": "Unsafe use of eval()",
+            "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+            "line": 1,
+            "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+          },
+          {
+            "file": "vulnerable-app.js",
+            "severity": "High",
+            "title": "Command execution via exec()",
+            "description": "Using exec() can run arbitrary shell commands; do not execute user-provided input.",
+            "line": 1,
+            "fix": "Avoid exec(); use safer alternatives or validate/whitelist input before executing."
+          }
+        ],
+        "filesScanned": 2,
+        "riskScore": 100
+      },
+      "dependencyScan": null,
+      "overallRiskScore": 100,
+      "scanTime": "2026-03-14T17:25:01.204Z"
+    }
+  },
+  {
+    "id": "1773509098567",
+    "type": "repo",
+    "timestamp": "2026-03-14T17:24:58.503Z",
+    "input": {
+      "repoName": "eval-vulnerable.zip"
+    },
+    "result": {
+      "codeScan": {
+        "vulnerabilities": [
+          {
+            "file": "eval-vulnerable.js",
+            "severity": "High",
+            "ruleId": "security/detect-eval-with-expression",
+            "title": "security/detect-eval-with-expression",
+            "description": "eval with argument of type Identifier",
+            "line": 11,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/security/detect-eval-with-expression"
+          },
+          {
+            "file": "eval-vulnerable.js",
+            "severity": "High",
+            "ruleId": "no-eval",
+            "title": "no-eval",
+            "description": "eval can be harmful.",
+            "line": 11,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-eval"
+          },
+          {
+            "file": "vulnerable-app.js",
+            "severity": "Medium",
+            "ruleId": "security/detect-child-process",
+            "title": "security/detect-child-process",
+            "description": "Found child_process.exec() with non Literal first argument",
+            "line": 34,
+            "column": 3,
+            "docsUrl": "https://eslint.org/docs/rules/security/detect-child-process"
+          }
+        ],
+        "aiFindings": [
+          {
+            "file": "eval-vulnerable.js",
+            "severity": "High",
+            "title": "Unsafe use of eval()",
+            "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+            "line": 1,
+            "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+          },
+          {
+            "file": "vulnerable-app.js",
+            "severity": "High",
+            "title": "Command execution via exec()",
+            "description": "Using exec() can run arbitrary shell commands; do not execute user-provided input.",
+            "line": 1,
+            "fix": "Avoid exec(); use safer alternatives or validate/whitelist input before executing."
+          }
+        ],
+        "filesScanned": 2,
+        "riskScore": 100
+      },
+      "dependencyScan": null,
+      "overallRiskScore": 100,
+      "scanTime": "2026-03-14T17:24:58.503Z"
+    }
+  },
+  {
+    "id": "1773509082309",
+    "type": "code",
+    "timestamp": "2026-03-14T17:24:42.306Z",
+    "input": {
+      "snippet": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nvoid login() {\n    char username[20];\n    char password[20];\n\n    printf(\"Enter username: \");\n    gets(username); // Buffer overflow\n\n    printf(\"Enter password: \");\n    gets(password); // Buffer overflow\n\n    if(strcmp(username, \"admin\") == 0 && strcmp(password, \"admin123\") == 0) {\n        printf(\"Login successful\\n\");\n    } else {\n        printf(\"Invalid credentials\\n\");\n    }\n}\n\nvoid echo() {\n    char input[100];\n\n    printf(\"Enter t"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected character '#'",
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T17:24:42.306Z"
+    }
+  },
+  {
+    "id": "1773509065671",
+    "type": "code",
+    "timestamp": "2026-03-14T17:24:25.640Z",
+    "input": {
+      "snippet": "const express = require(\"express\");\nconst sqlite3 = require(\"sqlite3\").verbose();\nconst { exec } = require(\"child_process\");\n\nconst app = express();\napp.use(express.urlencoded({ extended: true }));\napp.use(express.json());\n\nconst db = new sqlite3.Database(\":memory:\");\n\ndb.serialize(() => {\n  db.run(\"CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)\");\n  db.run(\"INSERT INTO users(username,password) VALUES ('admin','admin123')\");\n  db.run(\"INSERT INTO users(username,passwor"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "Medium",
+          "ruleId": "security/detect-child-process",
+          "title": "security/detect-child-process",
+          "description": "Found child_process.exec() with non Literal first argument",
+          "line": 34,
+          "column": 3,
+          "docsUrl": "https://eslint.org/docs/rules/security/detect-child-process"
+        },
+        {
+          "severity": "High",
+          "ruleId": "unsafe-exec",
+          "title": "Command execution via exec()",
+          "description": "Using exec() can run arbitrary shell commands; do not execute user-provided input.",
+          "line": 1,
+          "column": 1,
+          "fix": "Avoid exec(); use safer alternatives or validate/whitelist input before executing."
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "High",
+          "title": "Command execution via exec()",
+          "description": "Using exec() can run arbitrary shell commands; do not execute user-provided input.",
+          "line": 1,
+          "fix": "Avoid exec(); use safer alternatives or validate/whitelist input before executing."
+        }
+      ],
+      "riskScore": 60,
+      "scanTime": "2026-03-14T17:24:25.640Z"
+    }
+  },
+  {
+    "id": "1773509049073",
+    "type": "code",
+    "timestamp": "2026-03-14T17:24:08.565Z",
+    "input": {
+      "snippet": "const express = require(\"express\");\nconst app = express();\n\napp.use(express.json());\n\n// Eval Injection Vulnerability\napp.post(\"/calculate\", (req, res) => {\n    const expression = req.body.expression;\n\n    try {\n        const result = eval(expression);\n        res.send({ expression: expression, result: result });\n    } catch (error) {\n        res.send(\"Invalid expression\");\n    }\n});\n\napp.listen(3000, () => {\n    console.log(\"Server running on port 3000\");\n});\n"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "security/detect-eval-with-expression",
+          "title": "security/detect-eval-with-expression",
+          "description": "eval with argument of type Identifier",
+          "line": 11,
+          "column": 24,
+          "docsUrl": "https://eslint.org/docs/rules/security/detect-eval-with-expression"
+        },
+        {
+          "severity": "High",
+          "ruleId": "no-eval",
+          "title": "no-eval",
+          "description": "eval can be harmful.",
+          "line": 11,
+          "column": 24,
+          "docsUrl": "https://eslint.org/docs/rules/no-eval"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "High",
+          "title": "Unsafe use of eval()",
+          "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+          "line": 1,
+          "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-14T17:24:08.565Z"
+    }
+  },
+  {
+    "id": "1773504411843",
+    "type": "repo",
+    "timestamp": "2026-03-14T16:06:51.778Z",
+    "input": {
+      "repoName": "vulnerable_code_examples.zip"
+    },
+    "result": {
+      "codeScan": {
+        "vulnerabilities": [
+          {
+            "file": "eval-vulnerable.js",
+            "severity": "High",
+            "ruleId": "security/detect-eval-with-expression",
+            "title": "security/detect-eval-with-expression",
+            "description": "eval with argument of type Identifier",
+            "line": 11,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/security/detect-eval-with-expression"
+          },
+          {
+            "file": "eval-vulnerable.js",
+            "severity": "High",
+            "ruleId": "no-eval",
+            "title": "no-eval",
+            "description": "eval can be harmful.",
+            "line": 11,
+            "column": 24,
+            "docsUrl": "https://eslint.org/docs/rules/no-eval"
+          },
+          {
+            "file": "vulnerable-app.js",
+            "severity": "Medium",
+            "ruleId": "security/detect-child-process",
+            "title": "security/detect-child-process",
+            "description": "Found child_process.exec() with non Literal first argument",
+            "line": 34,
+            "column": 3,
+            "docsUrl": "https://eslint.org/docs/rules/security/detect-child-process"
+          }
+        ],
+        "aiFindings": [
+          {
+            "file": "eval-vulnerable.js",
+            "severity": "High",
+            "title": "Unsafe use of eval()",
+            "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+            "line": 1,
+            "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+          },
+          {
+            "file": "vulnerable-app.js",
+            "severity": "High",
+            "title": "Command execution via exec()",
+            "description": "Using exec() can run arbitrary shell commands; do not execute user-provided input.",
+            "line": 1,
+            "fix": "Avoid exec(); use safer alternatives or validate/whitelist input before executing."
+          }
+        ],
+        "filesScanned": 2,
+        "riskScore": 100
+      },
+      "dependencyScan": null,
+      "overallRiskScore": 100,
+      "scanTime": "2026-03-14T16:06:51.778Z"
+    }
+  },
+  {
+    "id": "1773504258007",
+    "type": "code",
+    "timestamp": "2026-03-14T16:04:17.996Z",
+    "input": {
+      "snippet": "const express = require(\"express\");\nconst app = express();\n\napp.use(express.json());\n\n// Eval Injection Vulnerability\napp.post(\"/calculate\", (req, res) => {\n    const expression = req.body.expression;\n\n    try {\n        const result = eval(expression);\n        res.send({ expression: expression, result: result });\n    } catch (error) {\n        res.send(\"Invalid expression\");\n    }\n});\n\napp.listen(3000, () => {\n    console.log(\"Server running on port 3000\");\n});\n"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "security/detect-eval-with-expression",
+          "title": "security/detect-eval-with-expression",
+          "description": "eval with argument of type Identifier",
+          "line": 11,
+          "column": 24,
+          "docsUrl": "https://eslint.org/docs/rules/security/detect-eval-with-expression"
+        },
+        {
+          "severity": "High",
+          "ruleId": "no-eval",
+          "title": "no-eval",
+          "description": "eval can be harmful.",
+          "line": 11,
+          "column": 24,
+          "docsUrl": "https://eslint.org/docs/rules/no-eval"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "High",
+          "title": "Unsafe use of eval()",
+          "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+          "line": 1,
+          "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-14T16:04:17.996Z"
+    }
+  },
+  {
+    "id": "1773504249422",
+    "type": "code",
+    "timestamp": "2026-03-14T16:04:09.419Z",
+    "input": {
+      "snippet": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nvoid login() {\n    char username[20];\n    char password[20];\n\n    printf(\"Enter username: \");\n    gets(username); // Buffer overflow\n\n    printf(\"Enter password: \");\n    gets(password); // Buffer overflow\n\n    if(strcmp(username, \"admin\") == 0 && strcmp(password, \"admin123\") == 0) {\n        printf(\"Login successful\\n\");\n    } else {\n        printf(\"Invalid credentials\\n\");\n    }\n}\n\nvoid echo() {\n    char input[100];\n\n    printf(\"Enter t"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected character '#'",
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T16:04:09.419Z"
+    }
+  },
+  {
+    "id": "1773504242634",
+    "type": "code",
+    "timestamp": "2026-03-14T16:04:02.606Z",
+    "input": {
+      "snippet": "const express = require(\"express\");\nconst sqlite3 = require(\"sqlite3\").verbose();\nconst { exec } = require(\"child_process\");\n\nconst app = express();\napp.use(express.urlencoded({ extended: true }));\napp.use(express.json());\n\nconst db = new sqlite3.Database(\":memory:\");\n\ndb.serialize(() => {\n  db.run(\"CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)\");\n  db.run(\"INSERT INTO users(username,password) VALUES ('admin','admin123')\");\n  db.run(\"INSERT INTO users(username,passwor"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "Medium",
+          "ruleId": "security/detect-child-process",
+          "title": "security/detect-child-process",
+          "description": "Found child_process.exec() with non Literal first argument",
+          "line": 34,
+          "column": 3,
+          "docsUrl": "https://eslint.org/docs/rules/security/detect-child-process"
+        },
+        {
+          "severity": "High",
+          "ruleId": "unsafe-exec",
+          "title": "Command execution via exec()",
+          "description": "Using exec() can run arbitrary shell commands; do not execute user-provided input.",
+          "line": 1,
+          "column": 1,
+          "fix": "Avoid exec(); use safer alternatives or validate/whitelist input before executing."
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "High",
+          "title": "Command execution via exec()",
+          "description": "Using exec() can run arbitrary shell commands; do not execute user-provided input.",
+          "line": 1,
+          "fix": "Avoid exec(); use safer alternatives or validate/whitelist input before executing."
+        }
+      ],
+      "riskScore": 60,
+      "scanTime": "2026-03-14T16:04:02.606Z"
+    }
+  },
+  {
+    "id": "1773504240443",
+    "type": "code",
+    "timestamp": "2026-03-14T16:04:00.423Z",
+    "input": {
+      "snippet": "const express = require(\"express\");\nconst app = express();\n\napp.use(express.json());\n\n// Eval Injection Vulnerability\napp.post(\"/calculate\", (req, res) => {\n    const expression = req.body.expression;\n\n    try {\n        const result = eval(expression);\n        res.send({ expression: expression, result: result });\n    } catch (error) {\n        res.send(\"Invalid expression\");\n    }\n});\n\napp.listen(3000, () => {\n    console.log(\"Server running on port 3000\");\n});\n"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "security/detect-eval-with-expression",
+          "title": "security/detect-eval-with-expression",
+          "description": "eval with argument of type Identifier",
+          "line": 11,
+          "column": 24,
+          "docsUrl": "https://eslint.org/docs/rules/security/detect-eval-with-expression"
+        },
+        {
+          "severity": "High",
+          "ruleId": "no-eval",
+          "title": "no-eval",
+          "description": "eval can be harmful.",
+          "line": 11,
+          "column": 24,
+          "docsUrl": "https://eslint.org/docs/rules/no-eval"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "High",
+          "title": "Unsafe use of eval()",
+          "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+          "line": 1,
+          "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-14T16:04:00.423Z"
+    }
+  },
+  {
+    "id": "1773504221109",
+    "type": "code",
+    "timestamp": "2026-03-14T16:03:40.908Z",
+    "input": {
+      "snippet": "const express = require(\"express\");\nconst app = express();\n\napp.use(express.json());\n\n// Eval Injection Vulnerability\napp.post(\"/calculate\", (req, res) => {\n    const expression = req.body.expression;\n\n    try {\n        const result = eval(expression);\n        res.send({ expression: expression, result: result });\n    } catch (error) {\n        res.send(\"Invalid expression\");\n    }\n});\n\napp.listen(3000, () => {\n    console.log(\"Server running on port 3000\");\n});\n"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "security/detect-eval-with-expression",
+          "title": "security/detect-eval-with-expression",
+          "description": "eval with argument of type Identifier",
+          "line": 11,
+          "column": 24,
+          "docsUrl": "https://eslint.org/docs/rules/security/detect-eval-with-expression"
+        },
+        {
+          "severity": "High",
+          "ruleId": "no-eval",
+          "title": "no-eval",
+          "description": "eval can be harmful.",
+          "line": 11,
+          "column": 24,
+          "docsUrl": "https://eslint.org/docs/rules/no-eval"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "High",
+          "title": "Unsafe use of eval()",
+          "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+          "line": 1,
+          "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-14T16:03:40.908Z"
+    }
+  },
+  {
+    "id": "1773503115321",
+    "type": "code",
+    "timestamp": "2026-03-14T15:45:15.140Z",
+    "input": {
+      "snippet": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nvoid login() {\n    char username[20];\n    char password[20];\n\n    printf(\"Enter username: \");\n    gets(username);   // Vulnerable: buffer overflow\n\n    printf(\"Enter password: \");\n    gets(password);   // Vulnerable: buffer overflow\n\n    if(strcmp(username, \"admin\") == 0 && strcmp(password, \"admin123\") == 0) {\n        printf(\"Login successful\\n\");\n    } else {\n        printf(\"Invalid credentials\\n\");\n    }\n}\n\nvoid echo() {\n    char inpu"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected character '#'",
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T15:45:15.140Z"
+    }
+  },
+  {
+    "id": "1773502508425",
+    "type": "code",
+    "timestamp": "2026-03-14T15:35:08.421Z",
+    "input": {
+      "snippet": "eval(\"1+1\")"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "no-eval",
+          "title": "no-eval",
+          "description": "eval can be harmful.",
+          "line": 1,
+          "column": 1,
+          "docsUrl": "https://eslint.org/docs/rules/no-eval"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "High",
+          "title": "Unsafe use of eval()",
+          "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+          "line": 1,
+          "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+        }
+      ],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T15:35:08.421Z"
+    }
+  },
+  {
+    "id": "1773502074053",
+    "type": "dependencies",
+    "timestamp": "2026-03-14T15:27:51.559Z",
+    "input": {
+      "packageJsonSnippet": "{\n  \"name\": \"test\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"lodash\": \"4.17.20\"\n  }\n}"
+    },
+    "result": {
+      "dependencies": [
+        {
+          "name": "lodash",
+          "version": "<=4.17.21",
+          "severity": "High",
+          "title": "Command Injection in lodash",
+          "description": "Command Injection in lodash",
+          "cves": [
+            "GHSA-35jh-r3h4-6jhm"
+          ],
+          "fix": "Update to lodash",
+          "url": "https://github.com/advisories/GHSA-35jh-r3h4-6jhm",
+          "cvss": 7.2
+        }
+      ],
+      "totalDependencies": 1,
+      "vulnerableCount": 1,
+      "scanTime": "2026-03-14T15:27:51.559Z"
+    }
+  },
+  {
+    "id": "1773502071544",
+    "type": "code",
+    "timestamp": "2026-03-14T15:27:51.385Z",
+    "input": {
+      "snippet": "const userInput = 'abc'; eval(userInput);"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "security/detect-eval-with-expression",
+          "title": "security/detect-eval-with-expression",
+          "description": "eval with argument of type Identifier",
+          "line": 1,
+          "column": 26,
+          "docsUrl": "https://eslint.org/docs/rules/security/detect-eval-with-expression"
+        },
+        {
+          "severity": "High",
+          "ruleId": "no-eval",
+          "title": "no-eval",
+          "description": "eval can be harmful.",
+          "line": 1,
+          "column": 26,
+          "docsUrl": "https://eslint.org/docs/rules/no-eval"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "test.js",
+          "severity": "High",
+          "title": "Unsafe use of eval()",
+          "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+          "line": 1,
+          "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-14T15:27:51.385Z"
+    }
+  },
+  {
+    "id": "1773492176271",
+    "type": "code",
+    "timestamp": "2026-03-14T12:42:56.029Z",
+    "input": {
+      "snippet": "{\n  \"target\": \"example.com\",\n  \"scanDate\": \"2026-03-14\",\n  \"vulnerabilities\": [\n    {\n      \"name\": \"SQL Injection\",\n      \"severity\": \"Critical\",\n      \"description\": \"User input is not sanitized allowing SQL queries to be manipulated.\"\n    },\n    {\n      \"name\": \"Cross Site Scripting (XSS)\",\n      \"severity\": \"High\",\n      \"description\": \"Attackers can inject malicious scripts into web pages.\"\n    },\n    {\n      \"name\": \"Open Port Exposure\",\n      \"severity\": \"Medium\",\n      \"description\": \"Un"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected token :",
+          "line": 2,
+          "column": 11
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T12:42:56.029Z"
+    }
+  },
+  {
+    "id": "1773492073196",
+    "type": "dependencies",
+    "timestamp": "2026-03-14T12:41:10.175Z",
+    "input": {
+      "packageJsonSnippet": "{\n  \"name\": \"test\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"lodash\": \"4.17.20\"\n  }\n}"
+    },
+    "result": {
+      "dependencies": [
+        {
+          "name": "lodash",
+          "version": "<=4.17.21",
+          "severity": "High",
+          "title": "Command Injection in lodash",
+          "description": "Command Injection in lodash",
+          "cves": [
+            "GHSA-35jh-r3h4-6jhm"
+          ],
+          "fix": "Update to lodash",
+          "url": "https://github.com/advisories/GHSA-35jh-r3h4-6jhm",
+          "cvss": 7.2
+        }
+      ],
+      "totalDependencies": 1,
+      "vulnerableCount": 1,
+      "scanTime": "2026-03-14T12:41:10.175Z"
+    }
+  },
+  {
+    "id": "1773491997158",
+    "type": "dependencies",
+    "timestamp": "2026-03-14T12:39:54.579Z",
+    "input": {
+      "packageJsonSnippet": "{\n  \"name\": \"test\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"lodash\": \"4.17.20\"\n  }\n}"
+    },
+    "result": {
+      "dependencies": [
+        {
+          "name": "lodash",
+          "version": "<=4.17.21",
+          "severity": "High",
+          "title": "Command Injection in lodash",
+          "description": "Command Injection in lodash",
+          "cves": [
+            "GHSA-35jh-r3h4-6jhm"
+          ],
+          "fix": "Update to lodash",
+          "url": "https://github.com/advisories/GHSA-35jh-r3h4-6jhm",
+          "cvss": 7.2
+        }
+      ],
+      "totalDependencies": 1,
+      "vulnerableCount": 1,
+      "scanTime": "2026-03-14T12:39:54.579Z"
+    }
+  },
+  {
+    "id": "1773491846595",
+    "type": "dependencies",
+    "timestamp": "2026-03-14T12:37:24.045Z",
+    "input": {
+      "packageJsonSnippet": "{\n  \"name\": \"test\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"lodash\": \"4.17.20\"\n  }\n}"
+    },
+    "result": {
+      "dependencies": [],
+      "vulnerableCount": 0,
+      "scanTime": "2026-03-14T12:37:24.045Z"
+    }
+  },
+  {
+    "id": "1773491819211",
+    "type": "dependencies",
+    "timestamp": "2026-03-14T12:36:56.775Z",
+    "input": {
+      "packageJsonSnippet": "{\n  \"name\": \"test\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"lodash\": \"4.17.20\"\n  }\n}"
+    },
+    "result": {
+      "dependencies": [],
+      "vulnerableCount": 0,
+      "scanTime": "2026-03-14T12:36:56.775Z"
+    }
+  },
+  {
+    "id": "1773491816763",
+    "type": "code",
+    "timestamp": "2026-03-14T12:36:56.760Z",
+    "input": {
+      "snippet": "const userInput = 'abc'; eval(userInput);"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "security/detect-eval-with-expression",
+          "title": "security/detect-eval-with-expression",
+          "description": "eval with argument of type Identifier",
+          "line": 1,
+          "column": 26,
+          "docsUrl": "https://eslint.org/docs/rules/security/detect-eval-with-expression"
+        },
+        {
+          "severity": "High",
+          "ruleId": "no-eval",
+          "title": "no-eval",
+          "description": "eval can be harmful.",
+          "line": 1,
+          "column": 26,
+          "docsUrl": "https://eslint.org/docs/rules/no-eval"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "test.js",
+          "severity": "High",
+          "title": "Unsafe use of eval()",
+          "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+          "line": 1,
+          "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-14T12:36:56.760Z"
+    }
+  },
+  {
+    "id": "1773491753642",
+    "type": "dependencies",
+    "timestamp": "2026-03-14T12:35:50.889Z",
+    "input": {
+      "packageJsonSnippet": "{\n  \"name\": \"test\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"lodash\": \"4.17.20\"\n  }\n}"
+    },
+    "result": {
+      "dependencies": [],
+      "vulnerableCount": 0,
+      "scanTime": "2026-03-14T12:35:50.889Z"
+    }
+  },
+  {
+    "id": "1773491750877",
+    "type": "code",
+    "timestamp": "2026-03-14T12:35:50.874Z",
+    "input": {
+      "snippet": "const userInput = 'abc'; eval(userInput);"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "security/detect-eval-with-expression",
+          "title": "security/detect-eval-with-expression",
+          "description": "eval with argument of type Identifier",
+          "line": 1,
+          "column": 26,
+          "docsUrl": "https://eslint.org/docs/rules/security/detect-eval-with-expression"
+        },
+        {
+          "severity": "High",
+          "ruleId": "no-eval",
+          "title": "no-eval",
+          "description": "eval can be harmful.",
+          "line": 1,
+          "column": 26,
+          "docsUrl": "https://eslint.org/docs/rules/no-eval"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "test.js",
+          "severity": "High",
+          "title": "Unsafe use of eval()",
+          "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+          "line": 1,
+          "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-14T12:35:50.874Z"
+    }
+  },
+  {
+    "id": "1773491705661",
+    "type": "dependencies",
+    "timestamp": "2026-03-14T12:35:02.559Z",
+    "input": {
+      "packageJsonSnippet": "{\n  \"name\": \"test\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"lodash\": \"4.17.20\"\n  }\n}"
+    },
+    "result": {
+      "dependencies": [],
+      "vulnerableCount": 0,
+      "scanTime": "2026-03-14T12:35:02.559Z"
+    }
+  },
+  {
+    "id": "1773491702548",
+    "type": "code",
+    "timestamp": "2026-03-14T12:35:02.544Z",
+    "input": {
+      "snippet": "const userInput = 'abc'; eval(userInput);"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "security/detect-eval-with-expression",
+          "title": "security/detect-eval-with-expression",
+          "description": "eval with argument of type Identifier",
+          "line": 1,
+          "column": 26,
+          "docsUrl": "https://eslint.org/docs/rules/security/detect-eval-with-expression"
+        },
+        {
+          "severity": "High",
+          "ruleId": "no-eval",
+          "title": "no-eval",
+          "description": "eval can be harmful.",
+          "line": 1,
+          "column": 26,
+          "docsUrl": "https://eslint.org/docs/rules/no-eval"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "test.js",
+          "severity": "High",
+          "title": "Unsafe use of eval()",
+          "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+          "line": 1,
+          "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-14T12:35:02.544Z"
+    }
+  },
+  {
+    "id": "1773491607391",
+    "type": "dependencies",
+    "timestamp": "2026-03-14T12:33:24.627Z",
+    "input": {
+      "packageJsonSnippet": "{\n  \"name\": \"test\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"lodash\": \"4.17.20\"\n  }\n}"
+    },
+    "result": {
+      "dependencies": [],
+      "vulnerableCount": 0,
+      "scanTime": "2026-03-14T12:33:24.627Z"
+    }
+  },
+  {
+    "id": "1773491604610",
+    "type": "code",
+    "timestamp": "2026-03-14T12:33:24.503Z",
+    "input": {
+      "snippet": "const userInput = 'abc'; eval(userInput);"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "security/detect-eval-with-expression",
+          "title": "security/detect-eval-with-expression",
+          "description": "eval with argument of type Identifier",
+          "line": 1,
+          "column": 26,
+          "docsUrl": "https://eslint.org/docs/rules/security/detect-eval-with-expression"
+        },
+        {
+          "severity": "High",
+          "ruleId": "no-eval",
+          "title": "no-eval",
+          "description": "eval can be harmful.",
+          "line": 1,
+          "column": 26,
+          "docsUrl": "https://eslint.org/docs/rules/no-eval"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "test.js",
+          "severity": "High",
+          "title": "Unsafe use of eval()",
+          "description": "eval() can execute arbitrary strings as code, which is dangerous when used with untrusted input.",
+          "line": 1,
+          "fix": "Avoid eval(); use safer alternatives or parse expressions safely."
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-14T12:33:24.503Z"
+    }
+  },
+  {
+    "id": "1773491449070",
+    "type": "dependencies",
+    "timestamp": "2026-03-14T12:30:45.950Z",
+    "input": {
+      "packageJsonSnippet": "{\n  \"name\": \"test\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"lodash\": \"4.17.20\"\n  }\n}"
+    },
+    "result": {
+      "dependencies": [
+        {
+          "name": "express",
+          "version": "4.18.2",
+          "severity": "Low",
+          "description": "Known vulnerability in older versions"
+        },
+        {
+          "name": "lodash",
+          "version": "4.17.20",
+          "severity": "Medium",
+          "description": "Prototype pollution vulnerability"
+        }
+      ],
+      "totalDependencies": 2,
+      "vulnerableCount": 1,
+      "scanTime": "2026-03-14T12:30:45.950Z"
+    },
+    "error": "Command failed: npm audit --json\n"
+  },
+  {
+    "id": "1773491445935",
+    "type": "code",
+    "timestamp": "2026-03-14T12:30:45.920Z",
+    "input": {
+      "snippet": "const userInput = 'abc'; eval(userInput);"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "title": "SQL Injection",
+          "description": "Potential SQL injection vulnerability detected",
+          "cwe": "CWE-89",
+          "fix": "Use parameterized queries or prepared statements",
+          "line": 10
+        },
+        {
+          "severity": "Medium",
+          "title": "Cross-Site Scripting (XSS)",
+          "description": "Unescaped user input in HTML output",
+          "cwe": "CWE-79",
+          "fix": "Sanitize user input and use Content Security Policy",
+          "line": 25
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 75,
+      "scanTime": "2026-03-14T12:30:45.920Z"
+    },
+    "error": "Failed to load plugin 'security' declared in 'CLIOptions': Cannot find module 'eslint-plugin-security'\nRequire stack:\n- F:\\HackJKLU\\__placeholder__.js"
+  },
+  {
+    "id": "1773491355772",
+    "type": "dependencies",
+    "timestamp": "2026-03-14T12:29:15.099Z",
+    "input": {
+      "packageJsonSnippet": "{\n  \"name\": \"test\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"lodash\": \"4.17.20\"\n  }\n}"
+    },
+    "result": {
+      "dependencies": [
+        {
+          "name": "express",
+          "version": "4.18.2",
+          "severity": "Low",
+          "description": "Known vulnerability in older versions"
+        },
+        {
+          "name": "lodash",
+          "version": "4.17.20",
+          "severity": "Medium",
+          "description": "Prototype pollution vulnerability"
+        }
+      ],
+      "totalDependencies": 2,
+      "vulnerableCount": 1,
+      "scanTime": "2026-03-14T12:29:15.099Z"
+    },
+    "error": "Command failed: npm audit --json\nnpm error code ENOLOCK\nnpm error audit This command requires an existing lockfile.\nnpm error audit Try creating one first with: npm i --package-lock-only\nnpm error audit Original error: loadVirtual requires existing shrinkwrap file\nnpm error A complete log of this run can be found in: C:\\Users\\lokesh verma\\AppData\\Local\\npm-cache\\_logs\\2026-03-14T12_29_15_354Z-debug-0.log\n"
+  },
+  {
+    "id": "1773491355077",
+    "type": "code",
+    "timestamp": "2026-03-14T12:29:15.038Z",
+    "input": {
+      "snippet": "const userInput = 'abc'; eval(userInput);"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "title": "SQL Injection",
+          "description": "Potential SQL injection vulnerability detected",
+          "cwe": "CWE-89",
+          "fix": "Use parameterized queries or prepared statements",
+          "line": 10
+        },
+        {
+          "severity": "Medium",
+          "title": "Cross-Site Scripting (XSS)",
+          "description": "Unescaped user input in HTML output",
+          "cwe": "CWE-79",
+          "fix": "Sanitize user input and use Content Security Policy",
+          "line": 25
+        }
+      ],
+      "aiFindings": [],
+      "riskScore": 75,
+      "scanTime": "2026-03-14T12:29:15.038Z"
+    },
+    "error": "Failed to load plugin 'security' declared in 'CLIOptions': Cannot find module 'eslint-plugin-security'\nRequire stack:\n- F:\\HackJKLU\\__placeholder__.js"
+  },
+  {
+    "id": "1773486686115",
+    "type": "code",
+    "timestamp": "2026-03-14T11:11:26.075Z",
+    "input": {
+      "snippet": "{\n  \"target\": \"example.com\",\n  \"scanDate\": \"2026-03-14\",\n  \"vulnerabilities\": [\n    {\n      \"name\": \"SQL Injection\",\n      \"severity\": \"Critical\",\n      \"description\": \"User input is not sanitized allowing SQL queries to be manipulated.\"\n    },\n    {\n      \"name\": \"Cross Site Scripting (XSS)\",\n      \"severity\": \"High\",\n      \"description\": \"Attackers can inject malicious scripts into web pages.\"\n    },\n    {\n      \"name\": \"Open Port Exposure\",\n      \"severity\": \"Medium\",\n      \"description\": \"Un"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected token :",
+          "line": 2,
+          "column": 11
+        }
+      ],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T11:11:26.075Z"
+    }
+  },
+  {
+    "id": "1773484923651",
+    "type": "code",
+    "timestamp": "2026-03-14T10:42:03.473Z",
+    "input": {
+      "snippet": "{\n  \"target\": \"example.com\",\n  \"scanDate\": \"2026-03-14\",\n  \"vulnerabilities\": [\n    {\n      \"name\": \"SQL Injection\",\n      \"severity\": \"Critical\",\n      \"description\": \"User input is not sanitized allowing SQL queries to be manipulated.\"\n    },\n    {\n      \"name\": \"Cross Site Scripting (XSS)\",\n      \"severity\": \"High\",\n      \"description\": \"Attackers can inject malicious scripts into web pages.\"\n    },\n    {\n      \"name\": \"Open Port Exposure\",\n      \"severity\": \"Medium\",\n      \"description\": \"Un"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected token :",
+          "line": 2,
+          "column": 11
+        }
+      ],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T10:42:03.473Z"
+    }
+  },
+  {
+    "id": "1773484677121",
+    "type": "code",
+    "timestamp": "2026-03-14T10:37:56.908Z",
+    "input": {
+      "snippet": "{\n  \"target\": \"example.com\",\n  \"scanDate\": \"2026-03-14\",\n  \"vulnerabilities\": [\n    {\n      \"name\": \"SQL Injection\",\n      \"severity\": \"Critical\",\n      \"description\": \"User input is not sanitized allowing SQL queries to be manipulated.\"\n    },\n    {\n      \"name\": \"Cross Site Scripting (XSS)\",\n      \"severity\": \"High\",\n      \"description\": \"Attackers can inject malicious scripts into web pages.\"\n    },\n    {\n      \"name\": \"Open Port Exposure\",\n      \"severity\": \"Medium\",\n      \"description\": \"Un"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected token :",
+          "line": 2,
+          "column": 11
+        }
+      ],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T10:37:56.908Z"
+    }
+  },
+  {
+    "id": "1773483860776",
+    "type": "code",
+    "timestamp": "2026-03-14T10:24:20.431Z",
+    "input": {
+      "snippet": "{\n  \"target\": \"example.com\",\n  \"scanDate\": \"2026-03-14\",\n  \"vulnerabilities\": [\n    {\n      \"name\": \"SQL Injection\",\n      \"severity\": \"Critical\",\n      \"description\": \"User input is not sanitized allowing SQL queries to be manipulated.\"\n    },\n    {\n      \"name\": \"Cross Site Scripting (XSS)\",\n      \"severity\": \"High\",\n      \"description\": \"Attackers can inject malicious scripts into web pages.\"\n    },\n    {\n      \"name\": \"Open Port Exposure\",\n      \"severity\": \"Medium\",\n      \"description\": \"Un"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected token :",
+          "line": 2,
+          "column": 11
+        }
+      ],
+      "riskScore": 40,
+      "scanTime": "2026-03-14T10:24:20.431Z"
+    }
+  },
+  {
     "id": "1773478919961",
     "type": "code",
     "timestamp": "2026-03-14T09:01:59.945Z",

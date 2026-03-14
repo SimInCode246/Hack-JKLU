@@ -1,13 +1,17 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useEffect, useState } from 'react';
 import type { ComponentType } from 'react';
+import { jsPDF } from 'jspdf';
 import Navbar from '../components/Navbar';
 import RiskScore from '../components/RiskScore';
 import UploadRepo from '../components/UploadRepo';
 import DependenciesScanner from '../components/DependenciesScanner';
 import RepoScanner from '../components/RepoScanner';
 import Dashboard from '../components/Dashboard';
+import History from '../components/History';
 
 type Severity = 'critical' | 'high' | 'medium' | 'low';
 
@@ -16,6 +20,7 @@ interface Vulnerability {
   title: string;
   description: string;
   cwe?: string;
+  cves?: string[];
   fix?: string;
   line?: number;
   ruleId?: string;
@@ -31,6 +36,7 @@ interface Dependency {
   description: string;
   title?: string;
   cwe?: string;
+  cves?: string[];
   fix?: string;
   url?: string;
   cvss?: number;
@@ -38,14 +44,19 @@ interface Dependency {
 
 type RawVulnerability = Omit<Vulnerability, 'severity'> & {
   severity?: string;
+  cves?: string[];
+  cve?: string;
 };
 
 type RawDependency = Omit<Dependency, 'severity'> & {
   severity?: string;
+  cves?: string[];
+  cve?: string;
 };
 
 interface CodeScanResult {
   vulnerabilities?: RawVulnerability[];
+  aiFindings?: RawVulnerability[];
   riskScore?: number;
   filesScanned?: number;
 }
@@ -82,6 +93,11 @@ const normalizeVulnerability = (vulnerability: RawVulnerability): Vulnerability 
   title: vulnerability.title || vulnerability.ruleId || 'Security issue detected',
   description: vulnerability.description || 'No description provided.',
   cwe: vulnerability.cwe,
+  cves: Array.isArray(vulnerability.cves)
+    ? vulnerability.cves
+    : vulnerability.cve
+    ? [vulnerability.cve]
+    : undefined,
   fix: vulnerability.fix,
   line: vulnerability.line,
   ruleId: vulnerability.ruleId,
@@ -97,6 +113,11 @@ const normalizeDependency = (dependency: RawDependency): Dependency => ({
   description: dependency.description || dependency.title || 'No description provided.',
   title: dependency.title,
   cwe: dependency.cwe,
+  cves: Array.isArray(dependency.cves)
+    ? dependency.cves
+    : dependency.cve
+    ? [dependency.cve]
+    : undefined,
   fix: dependency.fix,
   url: dependency.url,
   cvss: dependency.cvss
@@ -119,15 +140,64 @@ const calculateRiskScore = (items: Vulnerability[]) =>
     }, 0)
   );
 
-export default function Home() {
-  const [currentPage, setCurrentPage] = useState('scanner');
-  const [code, setCode] = useState('');
-  const [vulnerabilities, setVulnerabilities] = useState<Vulnerability[]>([]);
-  const [dependencies, setDependencies] = useState<Dependency[]>([]);
-  const [isScanning, setIsScanning] = useState(false);
-  const [scanProgress, setScanProgress] = useState(0);
-  const [riskScore, setRiskScore] = useState(0);
+  const getOwaspFix = (vuln: Vulnerability) => {
+    const title = (vuln.title || '').toLowerCase();
+
+    if (title.includes('sql injection')) {
+      return {
+        fix: 'Use parameterized queries or an ORM with prepared statements. Avoid string concatenation for SQL queries.',
+        reference: 'https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html'
+      };
+    }
+
+    if (title.includes('cross-site scripting') || title.includes('xss') || title.includes('innerhtml')) {
+      return {
+        fix: 'Validate and encode output, and apply a strong Content Security Policy. Prefer safe templating libraries over manual HTML construction.',
+        reference: 'https://cheatsheetseries.owasp.org/cheatsheets/XSS_Prevention_Cheat_Sheet.html'
+      };
+    }
+
+    if (title.includes('authentication') || title.includes('broken authentication')) {
+      return {
+        fix: 'Use secure password storage (bcrypt/argon2), enforce multi-factor auth, and avoid predictable session identifiers.',
+        reference: 'https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html'
+      };
+    }
+
+    if (title.includes('command execution') || title.includes('exec') || title.includes('os command')) {
+      return {
+        fix: 'Avoid running shell commands on untrusted input. If required, validate/whitelist input and use safe APIs.',
+        reference: 'https://cheatsheetseries.owasp.org/cheatsheets/Command_Injection_Cheat_Sheet.html'
+      };
+    }
+
+    if (title.includes('path traversal')) {
+      return {
+        fix: 'Normalize and validate file paths; do not allow user input to escape intended directories.',
+        reference: 'https://cheatsheetseries.owasp.org/cheatsheets/Path_Traversal_Cheat_Sheet.html'
+      };
+    }
+
+    if (title.includes('eval')) {
+      return {
+        fix: 'Avoid eval() and similar dynamic code execution; use safe parsers or interpreters instead.',
+        reference: 'https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html'
+      };
+    }
+
+    return null;
+  };
+
+  export default function Page() {
   const [backendOnline, setBackendOnline] = useState<boolean | null>(null);
+  const [vulnerabilities, setVulnerabilities] = useState<Vulnerability[]>([]);
+  const [aiFindings, setAiFindings] = useState<Vulnerability[]>([]);
+  const [dependencies, setDependencies] = useState<Dependency[]>([]);
+  const [riskScore, setRiskScore] = useState<number>(0);
+  const [code, setCode] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<string>('scanner');
+  const [isScanning, setIsScanning] = useState<boolean>(false);
+  const [progress, setProgress] = useState<number>(0);
 
   const severityCounts = vulnerabilities.reduce(
     (acc, vuln) => {
@@ -158,14 +228,7 @@ app.get('/user', (req, res) => {
 app.get('/search', (req, res) => {
   const searchTerm = req.query.q;
   // VULNERABLE: Unsanitized user input in HTML response
-  res.send(\`
-    <html>
-      <body>
-        <h1>Search Results for: \${searchTerm}</h1>
-        <div id="results"></div>
-      </body>
-    </html>
-  \`);
+  res.send('<html><body><h1>Search Results for: ' + searchTerm + '</h1><div id="results"></div></body></html>');
 });`,
     auth: `// Broken Authentication Vulnerability
 const bcrypt = require('bcrypt');
@@ -362,11 +425,11 @@ if (!filePath.startsWith(path.join(__dirname, 'uploads'))) {
     await checkBackendHealth();
 
     setIsScanning(true);
-    setScanProgress(0);
+    setProgress(0);
 
     // Animate progress
     const progressInterval = setInterval(() => {
-      setScanProgress(prev => {
+      setProgress(prev => {
         const newProgress = prev + Math.random() * 15;
         return newProgress > 90 ? 90 : newProgress;
       });
@@ -385,8 +448,10 @@ if (!filePath.startsWith(path.join(__dirname, 'uploads'))) {
 
       const data: CodeScanResult = await response.json();
       const normalizedVulnerabilities = normalizeVulnerabilities(data.vulnerabilities || []);
+      const normalizedAiFindings = normalizeVulnerabilities(data.aiFindings || []);
 
       setVulnerabilities(normalizedVulnerabilities);
+      setAiFindings(normalizedAiFindings);
       setRiskScore(
         typeof data.riskScore === 'number'
           ? data.riskScore
@@ -399,12 +464,111 @@ if (!filePath.startsWith(path.join(__dirname, 'uploads'))) {
       setRiskScore(calculateRiskScore(detectedVulns));
     } finally {
       clearInterval(progressInterval);
-      setScanProgress(100);
+      setProgress(100);
 
       await new Promise(resolve => setTimeout(resolve, 300));
 
       setIsScanning(false);
-      setScanProgress(0);
+      setProgress(0);
+    }
+  };
+
+  const exportPdf = async () => {
+    if (!vulnerabilities.length && !riskScore) {
+      return;
+    }
+
+    const scanResult: RepoScanResult = {
+      codeScan: {
+        vulnerabilities: vulnerabilities.map((v) => ({
+          ...v,
+          severity: v.severity
+        })),
+        aiFindings: aiFindings.map((v) => ({
+          ...v,
+          severity: v.severity
+        })),
+        riskScore,
+        filesScanned: 1
+      },
+      dependencyScan: {
+        dependencies: dependencies.map((d) => ({
+          ...d,
+          severity: d.severity
+        })),
+        totalDependencies: dependencies.length,
+        vulnerableCount: dependencies.length
+      },
+      overallRiskScore: riskScore
+    };
+
+    try {
+      const response = await fetch(`${API_BASE}/api/scan/pdf`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          scanResult,
+          title: 'Security Scan Report',
+          companyName: 'SecureScope'
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate PDF');
+      }
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'security-scan-report.pdf';
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('PDF export failed', error);
+      // If backend is unavailable, fall back to local export
+      const doc = new jsPDF();
+      doc.setFontSize(16);
+      doc.text('Security Scan Report', 14, 20);
+
+      doc.setFontSize(10);
+      doc.text(`Risk Score: ${riskScore}`, 14, 30);
+      doc.text(`Scanned At: ${new Date().toISOString()}`, 14, 36);
+
+      const startY = 48;
+      let y = startY;
+
+      if (vulnerabilities.length) {
+        doc.setFontSize(12);
+        doc.text('Vulnerabilities:', 14, y);
+        y += 8;
+
+        vulnerabilities.forEach((vuln, idx) => {
+          doc.setFontSize(10);
+          doc.text(`${idx + 1}. [${vuln.severity}] ${vuln.title}`, 14, y);
+          y += 6;
+          doc.setFontSize(9);
+          doc.text(`   ${vuln.description}`, 14, y);
+          y += 6;
+          if (vuln.fix) {
+            doc.text(`   Fix: ${vuln.fix}`, 14, y);
+            y += 6;
+          }
+          if (y > 270) {
+            doc.addPage();
+            y = 20;
+          }
+        });
+      } else {
+        doc.setFontSize(10);
+        doc.text('No vulnerabilities detected.', 14, y);
+        y += 10;
+      }
+
+      doc.save('security-scan-report.pdf');
     }
   };
 
@@ -420,6 +584,23 @@ if (!filePath.startsWith(path.join(__dirname, 'uploads'))) {
 
   const handleDependenciesScanned = (deps: Dependency[]) => {
     setDependencies(normalizeDependencies(deps));
+  };
+
+  const handleRepoScanned = (data: RepoScanResult) => {
+    const repoVulnerabilities = normalizeVulnerabilities(data.codeScan?.vulnerabilities || []);
+    const repoAiFindings = normalizeVulnerabilities(data.codeScan?.aiFindings || []);
+    const repoDependencies = normalizeDependencies(data.dependencyScan?.dependencies || []);
+
+    setVulnerabilities(repoVulnerabilities);
+    setAiFindings(repoAiFindings);
+    setDependencies(repoDependencies);
+    setRiskScore(
+      typeof data.overallRiskScore === 'number'
+        ? data.overallRiskScore
+        : typeof data.codeScan?.riskScore === 'number'
+        ? data.codeScan.riskScore
+        : calculateRiskScore(repoVulnerabilities)
+    );
   };
 
   useEffect(() => {
@@ -504,10 +685,10 @@ if (!filePath.startsWith(path.join(__dirname, 'uploads'))) {
                     <div className="w-full bg-gray-700 rounded-full h-2">
                       <div
                         className="bg-cyan-500 h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${scanProgress}%` }}
+                        style={{ width: `${progress}%` }}
                       />
                     </div>
-                    <p className="text-sm text-cyan-400 mt-1">{Math.round(scanProgress)}%</p>
+                    <p className="text-sm text-cyan-400 mt-1">{Math.round(progress)}%</p>
                   </div>
                 )}
               </div>
@@ -521,35 +702,148 @@ if (!filePath.startsWith(path.join(__dirname, 'uploads'))) {
                   </div>
                 )}
 
-                {vulnerabilities.map((vuln, index) => (
-                  <div key={index} className="bg-gray-800 p-6 rounded-lg">
-                    <div className="flex items-start gap-4">
-                      <div className={`px-3 py-1 rounded text-xs font-bold uppercase ${
-                        vuln.severity === 'critical' ? 'bg-red-600' :
-                        vuln.severity === 'high' ? 'bg-orange-600' :
-                        vuln.severity === 'medium' ? 'bg-yellow-600' : 'bg-green-600'
-                      }`}>
-                        {vuln.severity}
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-lg">{vuln.title}</h4>
-                        <p className="text-gray-300 mb-4">{vuln.description}</p>
-                        <details className="cursor-pointer">
-                          <summary className="text-cyan-400 hover:underline">View Recommended Fix</summary>
-                          <pre className="mt-3 p-4 bg-gray-900 rounded text-sm overflow-x-auto">
-                            {vuln.fix}
-                          </pre>
-                        </details>
+                {vulnerabilities.map((vuln, index) => {
+                  const owasp = getOwaspFix(vuln);
+                  const fixText = vuln.fix || owasp?.fix || 'No recommended fix available.';
+
+                  return (
+                    <div key={index} className="bg-gray-800 p-6 rounded-lg">
+                      <div className="flex items-start gap-4">
+                        <div className={`px-3 py-1 rounded text-xs font-bold uppercase ${
+                          vuln.severity === 'critical' ? 'bg-red-600' :
+                          vuln.severity === 'high' ? 'bg-orange-600' :
+                          vuln.severity === 'medium' ? 'bg-yellow-600' : 'bg-green-600'
+                        }`}>
+                          {vuln.severity}
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-semibold text-lg">{vuln.title}</h4>
+                          <p className="text-gray-300 mb-4">{vuln.description}</p>
+
+                          {Array.isArray(vuln.cves) && vuln.cves.length > 0 && (
+                            <div className="mb-3">
+                              <div className="text-sm font-semibold text-gray-300 mb-1">Related CVEs</div>
+                              <div className="flex flex-wrap gap-2">
+                                {vuln.cves.slice(0, 3).map((cve) => (
+                                  <a
+                                    key={cve}
+                                    href={`https://nvd.nist.gov/vuln/detail/${cve}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="text-cyan-400 hover:text-cyan-300 text-xs underline"
+                                  >
+                                    {cve}
+                                  </a>
+                                ))}
+                                {vuln.cves.length > 3 && (
+                                  <span className="text-gray-400 text-xs">+{vuln.cves.length - 3} more</span>
+                                )}
+                              </div>
+                            </div>
+                          )}
+
+                          <details className="cursor-pointer">
+                            <summary className="text-cyan-400 hover:underline">View Recommended Fix</summary>
+                            <pre className="mt-3 p-4 bg-gray-900 rounded text-sm overflow-x-auto">
+                              {fixText}
+                              {owasp && (
+                                <>
+                                  {'\n'}
+                                  {'\n'}
+                                  <span className="text-xs text-gray-400">
+                                    Learn more: <a className="underline text-cyan-300" href={owasp.reference} target="_blank" rel="noreferrer">OWASP Cheat Sheet</a>
+                                  </span>
+                                </>
+                              )}
+                            </pre>
+                          </details>
+                        </div>
                       </div>
                     </div>
+                  );
+                })}
+
+                {aiFindings.length > 0 && (
+                  <div className="space-y-4">
+                    <div className="bg-gray-800 p-6 rounded-lg">
+                      <h3 className="text-xl font-bold mb-4">AI Findings</h3>
+                      {aiFindings.map((finding, idx) => (
+                        <div key={idx} className="bg-gray-900 p-4 rounded-lg mb-3">
+                          <div className="flex items-start gap-4">
+                            <div className={`px-3 py-1 rounded text-xs font-bold uppercase ${
+                              finding.severity === 'critical' ? 'bg-red-600' :
+                              finding.severity === 'high' ? 'bg-orange-600' :
+                              finding.severity === 'medium' ? 'bg-yellow-600' : 'bg-green-600'
+                            }`}>
+                              {finding.severity}
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="font-semibold text-lg">{finding.title}</h4>
+                              <p className="text-gray-300 mb-2">{finding.description}</p>
+
+                              {Array.isArray(finding.cves) && finding.cves.length > 0 && (
+                                <div className="mb-2">
+                                  <div className="text-sm font-semibold text-gray-300 mb-1">Related CVEs</div>
+                                  <div className="flex flex-wrap gap-2">
+                                    {finding.cves.slice(0, 3).map((cve) => (
+                                      <a
+                                        key={cve}
+                                        href={`https://nvd.nist.gov/vuln/detail/${cve}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="text-cyan-400 hover:text-cyan-300 text-xs underline"
+                                      >
+                                        {cve}
+                                      </a>
+                                    ))}
+                                    {finding.cves.length > 3 && (
+                                      <span className="text-gray-400 text-xs">+{finding.cves.length - 3} more</span>
+                                    )}
+                                  </div>
+                                </div>
+                              )}
+
+                              {(() => {
+                                const owasp = getOwaspFix(finding);
+                                const fixText = finding.fix || owasp?.fix || 'No recommended fix available.';
+                                return (
+                                  <details className="cursor-pointer">
+                                    <summary className="text-cyan-400 hover:underline">Recommended Fix</summary>
+                                    <pre className="mt-3 p-4 bg-gray-900 rounded text-sm overflow-x-auto">
+                                      {fixText}
+                                      {owasp && (
+                                        <>
+                                          {'\n'}
+                                          {'\n'}
+                                          <span className="text-xs text-gray-400">
+                                            Learn more: <a className="underline text-cyan-300" href={owasp.reference} target="_blank" rel="noreferrer">OWASP Cheat Sheet</a>
+                                          </span>
+                                        </>
+                                      )}
+                                    </pre>
+                                  </details>
+                                );
+                              })()}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
+                )}
               </div>
             </div>
 
             {/* Sidebar */}
             <div className="space-y-6">
               <RiskScore score={riskScore} counts={severityCounts} />
+              <button
+                onClick={exportPdf}
+                className="w-full px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded text-sm font-medium"
+                disabled={vulnerabilities.length === 0 && !riskScore}
+              >
+                Export PDF Report
+              </button>
               <UploadRepo
                 onFileContentUploaded={(file: { name: string; content: string | null }) => {
                   if (file?.content) {
@@ -559,6 +853,7 @@ if (!filePath.startsWith(path.join(__dirname, 'uploads'))) {
                     void runScan(file.content);
                   }
                 }}
+                onRepoScanned={handleRepoScanned}
               />
             </div>
           </div>
@@ -578,9 +873,11 @@ if (!filePath.startsWith(path.join(__dirname, 'uploads'))) {
         {currentPage === 'repo' && (
           <RepoScanner onRepoScanned={(data: RepoScanResult) => {
             const repoVulnerabilities = normalizeVulnerabilities(data.codeScan?.vulnerabilities || []);
+            const repoAiFindings = normalizeVulnerabilities(data.codeScan?.aiFindings || []);
             const repoDependencies = normalizeDependencies(data.dependencyScan?.dependencies || []);
 
             setVulnerabilities(repoVulnerabilities);
+            setAiFindings(repoAiFindings);
             setDependencies(repoDependencies);
             setRiskScore(
               typeof data.overallRiskScore === 'number'
@@ -590,6 +887,10 @@ if (!filePath.startsWith(path.join(__dirname, 'uploads'))) {
                 : calculateRiskScore(repoVulnerabilities)
             );
           }} />
+        )}
+
+        {currentPage === 'history' && (
+          <History />
         )}
       </main>
     </div>

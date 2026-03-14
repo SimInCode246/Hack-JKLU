@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 export default function DependenciesScanner({ onDependenciesScanned }) {
   const [isScanning, setIsScanning] = useState(false);
@@ -6,6 +6,7 @@ export default function DependenciesScanner({ onDependenciesScanned }) {
   const [dependencies, setDependencies] = useState([]);
   const [packageJsonText, setPackageJsonText] = useState('');
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [severityFilter, setSeverityFilter] = useState('all');
   const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5000';
 
   const normalizeSeverity = (severity = '') => severity.toLowerCase();
@@ -21,7 +22,12 @@ export default function DependenciesScanner({ onDependenciesScanned }) {
     version: dependency?.version || 'Unknown version',
     severity: normalizeSeverity(dependency?.severity),
     title: dependency?.title || dependency?.description || 'Unknown issue',
-    description: dependency?.description || ''
+    description: dependency?.description || '',
+    cves: Array.isArray(dependency?.cves)
+      ? dependency.cves
+      : dependency?.cve
+      ? [dependency.cve]
+      : undefined
   });
 
   const mockDependencies = [
@@ -65,17 +71,31 @@ export default function DependenciesScanner({ onDependenciesScanned }) {
       if (uploadedFile) {
         const formData = new FormData();
         formData.append('file', uploadedFile);
+        formData.append('filename', uploadedFile.name);
         response = await fetch(`${API_BASE}/api/scan/dependencies`, {
           method: 'POST',
           body: formData
         });
       } else {
+        // Detect file type from content
+        let filename = 'package.json';
+        if (packageJsonText.trim().startsWith('gem ')) {
+          filename = 'Gemfile';
+        } else if (packageJsonText.includes('==') || packageJsonText.includes('>=')) {
+          filename = 'requirements.txt';
+        } else if (packageJsonText.includes('[tool.poetry.dependencies]') || packageJsonText.includes('[build-system]')) {
+          filename = 'pyproject.toml';
+        }
+
         response = await fetch(`${API_BASE}/api/scan/dependencies`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ packageJson: packageJsonText })
+          body: JSON.stringify({ 
+            content: packageJsonText,
+            filename: filename
+          })
         });
       }
 
@@ -110,6 +130,20 @@ export default function DependenciesScanner({ onDependenciesScanned }) {
     }
   };
 
+  const severityTotals = useMemo(() => {
+    const counts = { critical: 0, high: 0, medium: 0, low: 0 };
+    dependencies.forEach((dep) => {
+      const sev = normalizeSeverity(dep.severity);
+      if (counts[sev] !== undefined) counts[sev] += 1;
+    });
+    return counts;
+  }, [dependencies]);
+
+  const filteredDependencies = useMemo(() => {
+    if (severityFilter === 'all') return dependencies;
+    return dependencies.filter((dep) => normalizeSeverity(dep.severity) === severityFilter);
+  }, [dependencies, severityFilter]);
+
   return (
     <div className="bg-gray-800 p-6 rounded-lg">
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
@@ -121,16 +155,16 @@ export default function DependenciesScanner({ onDependenciesScanned }) {
             Dependency Scanner
           </h2>
           <p className="text-sm mt-1 text-gray-400">
-            Upload a package.json file, ZIP archive, or paste JSON content to scan npm packages for known vulnerabilities
+            Upload dependency files (package.json, requirements.txt, Gemfile, etc.) or ZIP archive to scan for known vulnerabilities across multiple ecosystems
           </p>
         </div>
         <div className="flex flex-wrap gap-2 items-center">
           <label className="cursor-pointer px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm">
             <span className="mr-2 rounded bg-gray-600 px-1.5 py-0.5 text-[10px] font-semibold">FILE</span>
-            Upload package.json or ZIP
+            Upload dependency file or ZIP
             <input
               type="file"
-              accept=".json,.zip"
+              accept=".json,.txt,.toml,.lock,.zip"
               className="hidden"
               onChange={(e) => {
                 const file = e.target.files?.[0];
@@ -198,50 +232,112 @@ export default function DependenciesScanner({ onDependenciesScanned }) {
 
       {/* Results Table */}
       {dependencies.length > 0 && (
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b border-gray-700">
-                <th className="text-left py-3 px-4 text-gray-300 font-semibold">Package</th>
-                <th className="text-left py-3 px-4 text-gray-300 font-semibold">Vulnerable Versions</th>
-                <th className="text-left py-3 px-4 text-gray-300 font-semibold">Severity</th>
-                <th className="text-left py-3 px-4 text-gray-300 font-semibold">Vulnerability</th>
-                <th className="text-left py-3 px-4 text-gray-300 font-semibold">CWE</th>
-                <th className="text-left py-3 px-4 text-gray-300 font-semibold">Fix</th>
-              </tr>
-            </thead>
-            <tbody>
-              {dependencies.map((dep, index) => (
-                <tr key={index} className="border-b border-gray-700 hover:bg-gray-700/50">
-                  <td className="py-3 px-4 font-medium text-white">{dep.name}</td>
-                  <td className="py-3 px-4 text-gray-300 font-mono text-sm">{dep.version}</td>
-                  <td className="py-3 px-4">
-                    <span className={`px-2 py-1 rounded text-xs font-bold uppercase text-white ${getSeverityColor(dep.severity)}`}>
-                      {formatSeverity(dep.severity)}
-                    </span>
-                  </td>
-                  <td className="py-3 px-4 text-gray-300">{dep.title}</td>
-                  <td className="py-3 px-4 text-gray-300">{dep.cwe || 'N/A'}</td>
-                  <td className="py-3 px-4">
-                    <div className="text-xs">
-                      <div className="text-cyan-400 mb-1">{dep.fix}</div>
-                      {dep.url && (
-                        <a
-                          href={dep.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-cyan-300 hover:underline"
-                        >
-                          View Advisory
-                        </a>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <>
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-400">Filter by severity:</span>
+              <select
+                className="bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm text-white"
+                value={severityFilter}
+                onChange={(e) => setSeverityFilter(e.target.value)}
+              >
+                <option value="all">All</option>
+                <option value="critical">Critical</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+            <div className="flex items-center gap-3 text-sm text-gray-300">
+              <span className="inline-flex items-center gap-2">
+                <span className="w-2 h-2 bg-red-600 rounded-full"></span> Critical: {severityTotals.critical}
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="w-2 h-2 bg-orange-600 rounded-full"></span> High: {severityTotals.high}
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="w-2 h-2 bg-yellow-600 rounded-full"></span> Medium: {severityTotals.medium}
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="w-2 h-2 bg-green-600 rounded-full"></span> Low: {severityTotals.low}
+              </span>
+            </div>
+          </div>
+
+          {filteredDependencies.length === 0 ? (
+            <div className="text-center py-10 text-gray-400">
+              No vulnerabilities match the selected severity filter.
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-gray-700">
+                    <th className="text-left py-3 px-4 text-gray-300 font-semibold">Package</th>
+                    <th className="text-left py-3 px-4 text-gray-300 font-semibold">Vulnerable Versions</th>
+                    <th className="text-left py-3 px-4 text-gray-300 font-semibold">Severity</th>
+                    <th className="text-left py-3 px-4 text-gray-300 font-semibold">Vulnerability</th>
+                    <th className="text-left py-3 px-4 text-gray-300 font-semibold">CWE</th>
+                    <th className="text-left py-3 px-4 text-gray-300 font-semibold">CVE</th>
+                    <th className="text-left py-3 px-4 text-gray-300 font-semibold">Fix</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredDependencies.map((dep, index) => (
+                    <tr key={index} className="border-b border-gray-700 hover:bg-gray-700/50">
+                      <td className="py-3 px-4 font-medium text-white">{dep.name}</td>
+                      <td className="py-3 px-4 text-gray-300 font-mono text-sm">{dep.version}</td>
+                      <td className="py-3 px-4">
+                        <span className={`px-2 py-1 rounded text-xs font-bold uppercase text-white ${getSeverityColor(dep.severity)}`}>
+                          {formatSeverity(dep.severity)}
+                        </span>
+                      </td>
+                      <td className="py-3 px-4 text-gray-300">{dep.title}</td>
+                      <td className="py-3 px-4 text-gray-300">{dep.cwe || 'N/A'}</td>
+                      <td className="py-3 px-4 text-gray-300">
+                        {Array.isArray(dep.cves) && dep.cves.length ? (
+                          <div className="flex flex-wrap gap-1">
+                            {dep.cves.slice(0, 2).map((cve) => (
+                              <a
+                                key={cve}
+                                href={`https://nvd.nist.gov/vuln/detail/${cve}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-cyan-400 hover:text-cyan-300 text-xs underline"
+                              >
+                                {cve}
+                              </a>
+                            ))}
+                            {dep.cves.length > 2 && (
+                              <span className="text-gray-400 text-xs">+{dep.cves.length - 2} more</span>
+                            )}
+                          </div>
+                        ) : (
+                          <span className="text-gray-400">N/A</span>
+                        )}
+                      </td>
+                      <td className="py-3 px-4">
+                        <div className="text-xs">
+                          <div className="text-cyan-400 mb-1">{dep.fix}</div>
+                          {dep.url && (
+                            <a
+                              href={dep.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-cyan-300 hover:underline"
+                            >
+                              View Advisory
+                            </a>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </>
       )}
 
       {/* Empty State */}

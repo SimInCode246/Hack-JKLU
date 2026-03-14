@@ -1,4 +1,4 @@
-// File: C:\Users\lokesh verma\OneDrive\Desktop\suigetsu\Frontend\security-scanner-dashboard\app\page.tsx
+// File: F:\HackJKLU\Frontend\security-scanner-dashboard\app\page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

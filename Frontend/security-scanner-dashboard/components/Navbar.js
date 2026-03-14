@@ -3,7 +3,8 @@ export default function Navbar({ currentPage, setCurrentPage }) {
     { id: 'scanner', label: 'Scanner', icon: 'SCN' },
     { id: 'dashboard', label: 'Dashboard', icon: 'DB' },
     { id: 'dependencies', label: 'Dependencies', icon: 'PKG' },
-    { id: 'repo', label: 'Repository', icon: 'REP' }
+    { id: 'repo', label: 'Connect GitHub Repository', icon: 'REP' },
+    { id: 'history', label: 'History', icon: 'HIS' }
   ];
 
   return (
