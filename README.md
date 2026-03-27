@@ -202,12 +202,6 @@ Another process is already using port 5000 or 5173. Either:
 
 ---
 
-## 👥 Contributors
-
-- [Your Name](https://github.com/your-username)
-
----
-
 ## 📄 License
 
 This project was built for the **Hack-JKLU Hackathon**.
