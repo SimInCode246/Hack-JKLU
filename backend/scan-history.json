@@ -1,5 +1,382 @@
 [
   {
+    "id": "1774633844286",
+    "type": "code",
+    "timestamp": "2026-03-27T17:50:44.273Z",
+    "input": {
+      "snippet": "// SQL Injection Vulnerability\nconst express = require('express');\nconst mysql = require('mysql');\n\napp.get('/user', (req, res) => {\n  const userId = req.query.id;\n  // VULNERABLE: Direct string concatenation in SQL query\n  const query = \"SELECT * FROM users WHERE id = '\" + userId + \"'\";\n  db.query(query, (err, results) => {\n    res.json(results);\n  });\n});"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "no-unused-vars",
+          "title": "no-unused-vars",
+          "description": "'express' is assigned a value but never used.",
+          "line": 2,
+          "column": 7,
+          "docsUrl": "https://eslint.org/docs/rules/no-unused-vars"
+        },
+        {
+          "severity": "High",
+          "ruleId": "no-unused-vars",
+          "title": "no-unused-vars",
+          "description": "'mysql' is assigned a value but never used.",
+          "line": 3,
+          "column": 7,
+          "docsUrl": "https://eslint.org/docs/rules/no-unused-vars"
+        },
+        {
+          "severity": "High",
+          "ruleId": "no-undef",
+          "title": "no-undef",
+          "description": "'app' is not defined.",
+          "line": 5,
+          "column": 1,
+          "docsUrl": "https://eslint.org/docs/rules/no-undef"
+        },
+        {
+          "severity": "High",
+          "ruleId": "no-undef",
+          "title": "no-undef",
+          "description": "'db' is not defined.",
+          "line": 9,
+          "column": 3,
+          "docsUrl": "https://eslint.org/docs/rules/no-undef"
+        },
+        {
+          "severity": "Low",
+          "ruleId": "missing-helmet",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "column": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "Low",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "riskScore": 100,
+      "scanTime": "2026-03-27T17:50:44.273Z"
+    }
+  },
+  {
+    "id": "1774633824621",
+    "type": "code",
+    "timestamp": "2026-03-27T17:50:24.620Z",
+    "input": {
+      "snippet": "#include <stdio.h>\n#include <stdlib.h>\n#include <sqlite3.h>\n\nint main() {\n    sqlite3 *db;\n    sqlite3_stmt *res;\n\n    sqlite3_open(\"users.db\", &db);\n\n    char username[100];\n    char password[100];\n\n    printf(\"Enter username: \");\n    scanf(\"%s\", username);\n\n    printf(\"Enter password: \");\n    scanf(\"%s\", password);\n\n    const char *query =\n        \"SELECT * FROM users WHERE username=? AND password=?;\";\n\n    sqlite3_prepare_v2(db, query, -1, &res, 0);\n\n    // ✔️ Bind parameters safely\n    sqlit"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected character '#'",
+          "line": 1,
+          "column": 1,
+          "fix": "This likely means the code is not valid JavaScript/TypeScript or uses syntax not supported by the scanner. Detected C/C++ code. Try a C/C++ security analyzer such as cppcheck or clang-tidy."
+        },
+        {
+          "severity": "High",
+          "ruleId": "hardcoded-secret",
+          "title": "Hardcoded Secret",
+          "description": "API keys, passwords, or other secrets are hardcoded in the source code.",
+          "line": 1,
+          "column": 1,
+          "fix": "Move secrets to environment variables or a secure configuration management system.",
+          "confidence": "High"
+        },
+        {
+          "severity": "Low",
+          "ruleId": "missing-helmet",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "column": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "High",
+          "title": "Hardcoded Secret",
+          "description": "API keys, passwords, or other secrets are hardcoded in the source code.",
+          "line": 1,
+          "fix": "Move secrets to environment variables or a secure configuration management system.",
+          "confidence": "High"
+        },
+        {
+          "file": "input.js",
+          "severity": "Low",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-27T17:50:24.620Z"
+    }
+  },
+  {
+    "id": "1774633819333",
+    "type": "code",
+    "timestamp": "2026-03-27T17:50:19.331Z",
+    "input": {
+      "snippet": "#include <stdio.h>\n#include <stdlib.h>\n#include <sqlite3.h>\n\nint main() {\n    sqlite3 *db;\n    sqlite3_stmt *res;\n\n    sqlite3_open(\"users.db\", &db);\n\n    char username[100];\n    char password[100];\n\n    printf(\"Enter username: \");\n    scanf(\"%s\", username);\n\n    printf(\"Enter password: \");\n    scanf(\"%s\", password);\n\n    const char *query =\n        \"SELECT * FROM users WHERE username=? AND password=?;\";\n\n    sqlite3_prepare_v2(db, query, -1, &res, 0);\n\n    // ✔️ Bind parameters safely\n    sqlit"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected character '#'",
+          "line": 1,
+          "column": 1,
+          "fix": "This likely means the code is not valid JavaScript/TypeScript or uses syntax not supported by the scanner. Detected C/C++ code. Try a C/C++ security analyzer such as cppcheck or clang-tidy."
+        },
+        {
+          "severity": "High",
+          "ruleId": "hardcoded-secret",
+          "title": "Hardcoded Secret",
+          "description": "API keys, passwords, or other secrets are hardcoded in the source code.",
+          "line": 1,
+          "column": 1,
+          "fix": "Move secrets to environment variables or a secure configuration management system.",
+          "confidence": "High"
+        },
+        {
+          "severity": "Low",
+          "ruleId": "missing-helmet",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "column": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "High",
+          "title": "Hardcoded Secret",
+          "description": "API keys, passwords, or other secrets are hardcoded in the source code.",
+          "line": 1,
+          "fix": "Move secrets to environment variables or a secure configuration management system.",
+          "confidence": "High"
+        },
+        {
+          "file": "input.js",
+          "severity": "Low",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-27T17:50:19.331Z"
+    }
+  },
+  {
+    "id": "1774633817736",
+    "type": "code",
+    "timestamp": "2026-03-27T17:50:17.735Z",
+    "input": {
+      "snippet": "#include <stdio.h>\n#include <stdlib.h>\n#include <sqlite3.h>\n\nint main() {\n    sqlite3 *db;\n    sqlite3_stmt *res;\n\n    sqlite3_open(\"users.db\", &db);\n\n    char username[100];\n    char password[100];\n\n    printf(\"Enter username: \");\n    scanf(\"%s\", username);\n\n    printf(\"Enter password: \");\n    scanf(\"%s\", password);\n\n    const char *query =\n        \"SELECT * FROM users WHERE username=? AND password=?;\";\n\n    sqlite3_prepare_v2(db, query, -1, &res, 0);\n\n    // ✔️ Bind parameters safely\n    sqlit"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected character '#'",
+          "line": 1,
+          "column": 1,
+          "fix": "This likely means the code is not valid JavaScript/TypeScript or uses syntax not supported by the scanner. Detected C/C++ code. Try a C/C++ security analyzer such as cppcheck or clang-tidy."
+        },
+        {
+          "severity": "High",
+          "ruleId": "hardcoded-secret",
+          "title": "Hardcoded Secret",
+          "description": "API keys, passwords, or other secrets are hardcoded in the source code.",
+          "line": 1,
+          "column": 1,
+          "fix": "Move secrets to environment variables or a secure configuration management system.",
+          "confidence": "High"
+        },
+        {
+          "severity": "Low",
+          "ruleId": "missing-helmet",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "column": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "High",
+          "title": "Hardcoded Secret",
+          "description": "API keys, passwords, or other secrets are hardcoded in the source code.",
+          "line": 1,
+          "fix": "Move secrets to environment variables or a secure configuration management system.",
+          "confidence": "High"
+        },
+        {
+          "file": "input.js",
+          "severity": "Low",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-27T17:50:17.735Z"
+    }
+  },
+  {
+    "id": "1774633791838",
+    "type": "code",
+    "timestamp": "2026-03-27T17:49:51.833Z",
+    "input": {
+      "snippet": "import java.sql.*;\nimport java.util.Scanner;\n\npublic class LoginSecure {\n    public static void main(String[] args) throws Exception {\n        Connection conn = DriverManager.getConnection(\n            \"jdbc:mysql://localhost:3306/testdb\", \"root\", \"password\");\n\n        Scanner sc = new Scanner(System.in);\n\n        System.out.print(\"Username: \");\n        String username = sc.nextLine();\n\n        System.out.print(\"Password: \");\n        String password = sc.nextLine();\n\n        // ✔️ Safe: paramete"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": null,
+          "title": "Security issue detected",
+          "description": "Parsing error: Unexpected token .",
+          "line": 1,
+          "column": 12,
+          "fix": "This likely means the code is not valid JavaScript/TypeScript or uses syntax not supported by the scanner. Detected Python code. Consider using bandit, semgrep, or a Python static analysis tool."
+        },
+        {
+          "severity": "High",
+          "ruleId": "hardcoded-secret",
+          "title": "Hardcoded Secret",
+          "description": "API keys, passwords, or other secrets are hardcoded in the source code.",
+          "line": 1,
+          "column": 1,
+          "fix": "Move secrets to environment variables or a secure configuration management system.",
+          "confidence": "High"
+        },
+        {
+          "severity": "Low",
+          "ruleId": "missing-helmet",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "column": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "High",
+          "title": "Hardcoded Secret",
+          "description": "API keys, passwords, or other secrets are hardcoded in the source code.",
+          "line": 1,
+          "fix": "Move secrets to environment variables or a secure configuration management system.",
+          "confidence": "High"
+        },
+        {
+          "file": "input.js",
+          "severity": "Low",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "riskScore": 80,
+      "scanTime": "2026-03-27T17:49:51.833Z"
+    }
+  },
+  {
+    "id": "1774633777606",
+    "type": "code",
+    "timestamp": "2026-03-27T17:49:37.279Z",
+    "input": {
+      "snippet": "const mysql = require(\"mysql2\");\nconst readline = require(\"readline\");\n\nconst connection = mysql.createConnection({\n  host: \"localhost\",\n  user: \"root\",\n  password: \"password\",\n  database: \"testdb\"\n});\n\nconst rl = readline.createInterface({\n  input: process.stdin,\n  output: process.stdout\n});\n\nrl.question(\"Username: \", (username) => {\n  rl.question(\"Password: \", (password) => {\n\n    // ❌ Vulnerable: string concatenation\n    const query = `SELECT * FROM users WHERE username = '${username}' AND pa"
+    },
+    "result": {
+      "vulnerabilities": [
+        {
+          "severity": "High",
+          "ruleId": "hardcoded-secret",
+          "title": "Hardcoded Secret",
+          "description": "API keys, passwords, or other secrets are hardcoded in the source code.",
+          "line": 1,
+          "column": 1,
+          "fix": "Move secrets to environment variables or a secure configuration management system.",
+          "confidence": "High"
+        },
+        {
+          "severity": "Low",
+          "ruleId": "missing-helmet",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "column": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "aiFindings": [
+        {
+          "file": "input.js",
+          "severity": "High",
+          "title": "Hardcoded Secret",
+          "description": "API keys, passwords, or other secrets are hardcoded in the source code.",
+          "line": 1,
+          "fix": "Move secrets to environment variables or a secure configuration management system.",
+          "confidence": "High"
+        },
+        {
+          "file": "input.js",
+          "severity": "Low",
+          "title": "Missing Security Headers",
+          "description": "Security headers like Helmet are not being used to protect against common attacks.",
+          "line": 1,
+          "fix": "Install and use the Helmet middleware to set security headers.",
+          "confidence": "High"
+        }
+      ],
+      "riskScore": 40,
+      "scanTime": "2026-03-27T17:49:37.279Z"
+    }
+  },
+  {
     "id": "1773515319329",
     "type": "code",
     "timestamp": "2026-03-14T19:08:38.977Z",

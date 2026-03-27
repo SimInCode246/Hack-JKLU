@@ -1,4 +1,4 @@
-// File: F:\HackJKLU\Frontend\security-scanner-dashboard\app\layout.tsx
+// File: C:\Users\Omesh Naraniya\OneDrive\Desktop\exp\Hack-JKLU\Frontend\security-scanner-dashboard\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
