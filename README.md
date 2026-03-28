@@ -46,12 +46,15 @@ All three should print a version number without errors. ✅
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack & Languages
 
-| Layer | Technology |
-|-------|-----------|
-| **Backend** | Node.js, Express.js |
-| **Frontend** | React, Vite |
+### **Frontend**
+*   **Languages:** TypeScript, JavaScript, HTML, CSS
+*   **Frameworks & Libraries:** React.js, Next.js, Tailwind CSS
+
+### **Backend**
+*   **Languages:** JavaScript (Node.js)
+*   **Framework:** Express.js
 
 ---
 
